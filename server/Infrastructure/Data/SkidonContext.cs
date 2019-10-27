@@ -48,8 +48,7 @@ namespace Infrastructure.Data
 
                // builder.Us
                 
-                builder.UseSqlServer("Server=tcp:db-metinvest.database.windows.net,1433;Initial Catalog=db-metinvest-intranet-dev;Persist Security Info=False;User ID=metinvest-adm1n;Password=Qw3rty12345;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-                
+                builder.UseSqlServer("Server=tcp:db-discounts-bot.database.windows.net,1433;Initial Catalog=discounts-bot-dev;Persist Security Info=False;User ID=;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30
                 return new SkidonContext(builder.Options);
             }
         }
