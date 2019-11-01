@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <StartupObject></StartupObject>
+    <RuntimeFrameworkVersion>2.1</RuntimeFrameworkVersion>
+    <Configurations>Debug;Release;Dev;Local;FrontLocal</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
