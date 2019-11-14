@@ -11,6 +11,7 @@ namespace Infrastructure.Data
     public class SkidonContext : DbContext
     {
         public static event Action<SkidonContext> OnSavingChanges = context => { };
+        public static event Action<object> OnGettingEntity = entity => { };
 
         public SkidonContext(DbContextOptions<SkidonContext> options) : base(options)
         {
