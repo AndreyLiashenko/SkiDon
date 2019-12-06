@@ -1,4 +1,6 @@
 ﻿using ApplicationCore.Entities;
+using ApplicationCore.Entities.Users;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -8,7 +10,7 @@ using System.Text;
 
 namespace Infrastructure.Data
 {
-    public class SkidonContext : DbContext
+    public class SkidonContext : IdentityDbContext<SkidonUser>
     {
         public static event Action<SkidonContext> OnSavingChanges = context => { };
         public static event Action<object> OnGettingEntity = entity => { };
@@ -45,6 +47,7 @@ namespace Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             #region Configure Tables
+            base.OnModelCreating(builder);
             
             builder.Entity<Product>(ConfigureProducts);
 
@@ -55,6 +58,7 @@ namespace Infrastructure.Data
             builder.Entity<ProductCategory>(ConfigureProductCategories);
 
             builder.Entity<ProductsDiscount>(ConfigureProductsDiscounts);
+
             #endregion
         }
 

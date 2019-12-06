@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SkiDon.Controllers
@@ -10,11 +12,20 @@ namespace SkiDon.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private SkidonContext _context;
+
+        public ValuesController(SkidonContext context)
+        {
+            _context = context;
+        }
+
         // GET api/values
         [HttpGet]
+      //  [Authorize]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _context.Users.Select(x => x.UserName).ToArray();
+            //return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
