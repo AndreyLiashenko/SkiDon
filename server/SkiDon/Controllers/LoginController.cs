@@ -32,23 +32,23 @@ namespace SkiDon.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] LoginModel model)
         {
-            //var user = await _user.FindByNameAsync(model.UserName);
-            var login = _context.Users.FirstOrDefault(x => x.UserName == "Roma");
+            var user = await _user.FindByNameAsync(model.UserName);
+            
             var pass = _context.Users.FirstOrDefault(x => x.PasswordHash == model.Password);
 
-            if (login != null && pass != null)
+            if (user != null && pass != null)
             {
                 var claims = new[]
                 {
-                    new Claim(JwtRegisteredClaimNames.Sub, login.UserName),
+                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
 
-                var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecureKey"));
+                var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SkidoooonSecureKey"));
 
                 var token = new JwtSecurityToken(
-                    issuer: "https://skidon.azurewebsites.net",
-                    audience: "https://skidon.azurewebsites.net",
+                    issuer: "https://skidon-web-app.azurewebsites.net",
+                    audience: "https://skidon-web-app.azurewebsites.net",
                     expires: DateTime.UtcNow.AddHours(1),
                     claims: claims,
                     signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)

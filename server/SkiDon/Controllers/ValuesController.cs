@@ -21,7 +21,7 @@ namespace SkiDon.Controllers
 
         // GET api/values
         [HttpGet]
-      //  [Authorize]
+        [Authorize]
         public ActionResult<IEnumerable<string>> Get()
         {
             return _context.Users.Select(x => x.UserName).ToArray();

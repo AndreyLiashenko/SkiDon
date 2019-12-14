@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using SkiDon.Middleware;
 using SkiDon.Services;
 
 namespace SkiDon
@@ -54,13 +55,13 @@ namespace SkiDon
             {
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                options.TokenValidationParameters = new TokenValidationParameters()
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidAudience = "https://skidon.azurewebsites.net",
-                    ValidIssuer = "https://skidon.azurewebsites.net",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecureKey"))
+                    ValidAudience = "https://skidon-web-app.azurewebsites.net",
+                    ValidIssuer = "https://skidon-web-app.azurewebsites.net",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SkidoooonSecureKey"))
                 };
             });
 
@@ -78,6 +79,8 @@ namespace SkiDon
             {
                 app.UseHsts();
             }
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
