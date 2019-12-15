@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +33,15 @@ namespace SkiDon
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SkidonContext>(x => x
-               .UseSqlServer(Configuration.GetConnectionString("SkidonDB")));
+               .UseSqlServer(Configuration.GetConnectionString("SkidonDB")));            
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigin", builder => builder.AllowAnyOrigin());
+            });
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAllOrigin"));
+            });
             StartupConfigureServices(services);
         }
 
