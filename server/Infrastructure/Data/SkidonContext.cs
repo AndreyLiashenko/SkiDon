@@ -112,8 +112,6 @@ namespace Infrastructure.Data
             public SkidonContext CreateDbContext(string[] args)
             {
                 var builder = new DbContextOptionsBuilder<SkidonContext>();
-
-               // builder.Us
                 
                 builder.UseSqlServer("Server=tcp:db-discounts-bot.database.windows.net,1433;Initial Catalog=discounts-bot-dev;Persist Security Info=False;User ID=d1sconunts-admin;Password=Qw3rt5432y;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
