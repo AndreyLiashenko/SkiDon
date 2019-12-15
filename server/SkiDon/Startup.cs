@@ -35,14 +35,14 @@ namespace SkiDon
         {
             services.AddDbContext<SkidonContext>(x => x
                .UseSqlServer(Configuration.GetConnectionString("SkidonDB")));            
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAllOrigin", builder => builder.AllowAnyOrigin());
-            });
-            services.Configure<MvcOptions>(options =>
-            {
-                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAllOrigin"));
-            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAllOrigin", builder => builder.AllowAnyOrigin());
+            //});
+            //services.Configure<MvcOptions>(options =>
+            //{
+            //    options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAllOrigin"));
+            //});
             StartupConfigureServices(services);
         }
 
@@ -74,6 +74,7 @@ namespace SkiDon
                 };
             });
 
+            services.AddCors();
             services.AddRepositories();
         }
 
@@ -93,6 +94,13 @@ namespace SkiDon
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
+
+            app.UseCors(builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowCredentials()
+            .AllowAnyMethod());
+
             app.UseMvc();
         }
     }
