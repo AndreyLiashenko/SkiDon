@@ -10,7 +10,7 @@ import { AuthService } from './service/auth.service';
 export class AppComponent {
   title = 'Skidon';
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(public auth: AuthService, private router: Router) { }
 
   logout() {
     this.auth.logout();
