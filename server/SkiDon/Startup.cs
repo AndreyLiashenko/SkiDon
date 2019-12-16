@@ -101,6 +101,10 @@ namespace SkiDon
             .AllowCredentials()
             .AllowAnyMethod());
 
+            app.UseFileServer();
+
+            app.UseMvcWithDefaultRoute();
+
             app.UseMvc();
         }
     }
