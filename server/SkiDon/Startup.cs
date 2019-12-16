@@ -36,15 +36,7 @@ namespace SkiDon
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SkidonContext>(x => x
-               .UseSqlServer(Configuration.GetConnectionString("SkidonDB")));            
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("AllowAllOrigin", builder => builder.AllowAnyOrigin());
-            //});
-            //services.Configure<MvcOptions>(options =>
-            //{
-            //    options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAllOrigin"));
-            //});
+               .UseSqlServer(Configuration.GetConnectionString("SkidonDB"))); 
             StartupConfigureServices(services);
         }
 
