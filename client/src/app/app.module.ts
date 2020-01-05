@@ -33,11 +33,12 @@ export function tokenGetter() {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    JwtModule.forRoot({
+     JwtModule
+    .forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:44330'],
-        blacklistedRoutes: ['localhost:44330/api/login']
+        whitelistedDomains: ['https://skidon-web-app.azurewebsites.net'],
+        blacklistedRoutes: ['https://skidon-web-app.azurewebsites.net/api/login']
       }
     })
   ],

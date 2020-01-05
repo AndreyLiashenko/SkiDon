@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -34,15 +36,7 @@ namespace SkiDon
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SkidonContext>(x => x
-               .UseSqlServer(Configuration.GetConnectionString("SkidonDB")));            
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("AllowAllOrigin", builder => builder.AllowAnyOrigin());
-            //});
-            //services.Configure<MvcOptions>(options =>
-            //{
-            //    options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAllOrigin"));
-            //});
+               .UseSqlServer(Configuration.GetConnectionString("SkidonDB"))); 
             StartupConfigureServices(services);
         }
 
@@ -101,7 +95,17 @@ namespace SkiDon
             .AllowCredentials()
             .AllowAnyMethod());
 
+            app.UseFileServer();
+
+            app.UseMvcWithDefaultRoute();
+
             app.UseMvc();
+
+            app.Run(async (context) =>
+            {
+                context.Response.ContentType = "text/html";
+                await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
+            });
         }
     }
 }

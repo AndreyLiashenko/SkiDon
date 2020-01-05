@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
   constructor(private http: HttpClient) { }
-  private url = "https://localhost:44330/api/login";
+  private url = "https://skidon-web-app.azurewebsites.net/api/login";
 
   login(username: string, password: string): Observable<boolean> {
     return this.http.post<{token: string}>(this.url, {username: username, password: password})
