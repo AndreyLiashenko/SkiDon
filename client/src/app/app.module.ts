@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainMenuComponent } from './shared/main-menu.component';
 import { ProductComponent } from './product/product-grid.component';
-import { HomeComponent } from './home/home/home.component';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './service/login/login.component';
 
 export function tokenGetter() {
