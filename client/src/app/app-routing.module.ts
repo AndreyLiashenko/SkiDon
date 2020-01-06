@@ -9,10 +9,10 @@ import { LoginComponent } from './service/login/login.component';
 
 
 const routes: Routes = [ 
-  { path: 'product', component: ProductComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'product', component: ProductComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: '',component: HomeComponent, canActivate: [AuthGuard] }
+  { path: '',component: HomeComponent }
 ];
 
 @NgModule({
