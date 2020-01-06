@@ -16,6 +16,6 @@ export class ShopService {
     return this.http.post(this.url ,body);
   }
   getShops(){
-    return this.http.get(this.url);
+    return this.http.get<Shop>(this.url);
   }
 }

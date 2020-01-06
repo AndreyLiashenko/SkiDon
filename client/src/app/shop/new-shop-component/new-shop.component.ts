@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { Shop } from '../models/shop'
 import { ShopService } from '../shop.service';
 
@@ -9,11 +9,11 @@ import { ShopService } from '../shop.service';
   providers: [ShopService]
 })
 export class NewShopComponent implements OnInit {
-  public shop: Shop;
+  @Input() shop: Shop;
 
   constructor(private serv: ShopService) 
   {
-    this.shop = new Shop();
+    console.log(this.shop);
   }
 
   ngOnInit() {
