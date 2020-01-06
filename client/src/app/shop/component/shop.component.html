@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-12 my-1">
+        <button (click)="isAddNew = !isAddNew" *ngIf="!isAddNew">Add New</button>
+        <app-new-shop *ngIf="isAddNew" (onChanged)="onChanged($event)"></app-new-shop>
+    </div>
+</div>
+<div class="row" *ngIf="!isAddNew">
+    <h5>das</h5>
+    <div class="col-12">
+        <ag-grid-angular
+        style="height: 500px;"
+        class="ag-theme-balham"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        >
+        </ag-grid-angular>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<p>new-shop works!</p>
+<div class="row">
+    <div class="form-group col-12">
+        <label >Shop Name</label>
+        <input type="text" class="form-control" [(ngModel)]="shop.Name" />
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-12">
+        <label >Shop Url</label>
+        <input type="text" class="form-control" [(ngModel)]="shop.ShopUrl" />
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-12">
+        <label >Shop jurAdress</label>
+        <input type="text" class="form-control" [(ngModel)]="shop.JurAdress" />
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-12">
+        <label >IS Chain:</label>
+        <input type="checkbox" [(ngModel)]="shop.IsChain" />
+    </div> 
+</div>
+<div class="row">
+    <div class="col-6">
+        <button (click)="save()">Save</button>
+    </div>
+    <div class="col-6">
+        <button (click)="cancel()">Cancel</button>
+    </div>   
+</div>

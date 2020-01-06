@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthService } from './service/auth.service';
@@ -15,6 +16,9 @@ import { MainMenuComponent } from './shared/main-menu.component';
 import { ProductComponent } from './product/product-grid.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './service/login/login.component';
+import { ShopComponent } from './shop/component/shop.component';
+import { NewShopComponent } from './shop/new-shop-component/new-shop.component';
+import { AuthInterceptor } from './service/auth.interceptor';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -26,7 +30,9 @@ export function tokenGetter() {
     MainMenuComponent,
     ProductComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ShopComponent,
+    NewShopComponent
   ],
   imports: [
     BrowserModule,
@@ -40,11 +46,17 @@ export function tokenGetter() {
         whitelistedDomains: ['https://skidon-web-app.azurewebsites.net'],
         blacklistedRoutes: ['https://skidon-web-app.azurewebsites.net/api/login']
       }
-    })
+    }),
+    AgGridModule
   ],
   providers: [
     AuthGuard,
-    AuthService
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
