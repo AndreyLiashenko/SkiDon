@@ -33,7 +33,7 @@ export function tokenGetter() {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-     JwtModule
+    JwtModule
     .forRoot({
       config: {
         tokenGetter: tokenGetter,

@@ -1,8 +1,6 @@
-   <div class="row" style="background:black; color: white;">
-        <div class="col-8">
-            Инфа о организациях
-        </div>
-        <div class="col-4">
-            <a routerLink="/auth">Ввійти</a>
-        </div>
-    </div>
+<nav class="nav nav-pills">
+    <a class="nav-link" routerLink="home" routerLinkActive="active" *ngIf="auth.loggedIn">Home</a>
+    <a class="nav-link" routerLink="product" routerLinkActive="active" *ngIf="auth.loggedIn">Product</a>
+    <a class="nav-link" routerLink="login" routerLinkActive="active" *ngIf="!auth.loggedIn">Login</a>
+    <a class="nav-link" (click)="logout()" href="#" *ngIf="auth.loggedIn">Logout</a>
+</nav>
