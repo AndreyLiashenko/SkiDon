@@ -13,6 +13,7 @@ namespace SkiDon.Services
         public static void AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IApiRepository<Product, long>, ApiRepository<Product, long>>();
+            services.AddScoped<IApiRepository<Shop, long>, ApiRepository<Shop, long>>();
         }
     }
 }

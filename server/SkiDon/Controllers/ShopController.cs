@@ -34,17 +34,15 @@ namespace SkiDon.Controllers
 
         [HttpPut("{key}")]
         public async Task<IActionResult> Put(int key, [FromBody] Shop shop)
-        {            
-            //return await Put(key, shop);
-            return null;
+        {
+            return await Put(key, shop);
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Shop shop)
         {
             shop.CreatedDate = DateTime.Now;
-            return null;
-            //return await base.Post(shop);
+            return await base.Post(shop);
         }
 
         [HttpDelete("{key}")]
