@@ -17,7 +17,7 @@ import { ProductComponent } from './product/product-grid.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './service/login/login.component';
 import { ShopComponent } from './shop/component/shop.component';
-import { NewShopComponent } from './shop/new-shop-component/new-shop.component';
+import { EditShopComponent } from './shop/edit-shop-component/edit-shop.component';
 import { AuthInterceptor } from './service/auth.interceptor';
 
 export function tokenGetter() {
@@ -32,7 +32,7 @@ export function tokenGetter() {
     HomeComponent,
     LoginComponent,
     ShopComponent,
-    NewShopComponent
+    EditShopComponent
   ],
   imports: [
     BrowserModule,

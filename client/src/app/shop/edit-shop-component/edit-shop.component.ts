@@ -3,12 +3,12 @@ import { Shop } from '../models/shop'
 import { ShopService } from '../shop.service';
 
 @Component({
-  selector: 'app-new-shop',
-  templateUrl: './new-shop.component.html',
-  styleUrls: ['./new-shop.component.css'],
+  selector: 'app-edit-shop',
+  templateUrl: './edit-shop.component.html',
+  styleUrls: ['./edit-shop.component.css'],
   providers: [ShopService]
 })
-export class NewShopComponent implements OnInit {
+export class EditShopComponent implements OnInit {
   @Input() shop: Shop;
   @Output() onShopSaved = new EventEmitter<Shop>();
   constructor(private serv: ShopService){  }

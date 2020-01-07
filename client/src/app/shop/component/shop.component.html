@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-12 my-1">
-        <button (click)="editInProc = !editInProc" *ngIf="!editInProc">Add New</button>
-        <button (click)="change()" *ngIf="!editInProc" >Change</button>
-        <button (click)="deleteSelectedRows()" *ngIf="!editInProc" [disabled]="!rowsSelected()">Delete Selected Row</button>
+        <button (click)="editInProc = !editInProc" >Add New</button>
+        <button (click)="change()"  [disabled]="!rowsSelected()">Change</button>
+        <button (click)="deleteSelectedRows()"  [disabled]="!rowsSelected()">Delete Selected Row</button>
     </div>
 </div>
-<div class="row" *ngIf="!editInProc">
+<div class="row" >
     <div class="col-12">
         <ag-grid-angular
             #agGrid
@@ -23,7 +23,7 @@
 <div class="row" *ngIf="editInProc">
     <div class="col-12 popup">
         <div class="edit-panel-shop">
-            <app-new-shop *ngIf="editInProc" (onShopSaved)="onShopSaved($event)" [shop]="shopBeingEdited"></app-new-shop>  
+            <app-edit-shop *ngIf="editInProc" (onShopSaved)="onShopSaved($event)" [shop]="shopBeingEdited"></app-edit-shop>  
         </div>
         <div class="overlay"></div>    
     </div>
