@@ -32,7 +32,10 @@ export class ShopComponent implements OnInit {
       field: 'createdDate', 
       sortable: true, 
       filter: true,
-      cellRenderer: (data) => { return moment(data.createdAt).format('MM/DD/YYYY HH:mm') } }
+      valueFormatter: function (params) {
+        return moment(params.value).format('MM/DD/YYYY HH:mm');
+      }
+    }
   ];
 
 
