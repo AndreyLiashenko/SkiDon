@@ -35,7 +35,7 @@ namespace SkiDon.Controllers
         [HttpPut("{key}")]
         public async Task<IActionResult> Put(int key, [FromBody] Shop shop)
         {
-            return await Put(key, shop);
+            return await base.Put(key, shop);
         }
 
         [HttpPost]
@@ -47,7 +47,7 @@ namespace SkiDon.Controllers
 
         [HttpDelete("{key}")]
         // DELETE: api/CompanyGroups/5
-        public async Task<IActionResult> Delete(long key)
+        public async Task<IActionResult> Delete(int key)
         {
             return await base.Delete(key);
         }

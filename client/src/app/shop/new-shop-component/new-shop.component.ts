@@ -10,30 +10,25 @@ import { ShopService } from '../shop.service';
 })
 export class NewShopComponent implements OnInit {
   @Input() shop: Shop;
+  @Output() onShopSaved = new EventEmitter<Shop>();
+  constructor(private serv: ShopService){  }
 
-  constructor(private serv: ShopService) 
-  {
-    console.log(this.shop);
-  }
+  ngOnInit() { console.log(this.shop); }
 
-  ngOnInit() {
-  }
   @Output() onChanged = new EventEmitter<boolean>();
 
-  save():void{
-    console.log(this.shop);
-    this.serv.addNewShop(this.shop)
-      .subscribe(
+  save():void{  
+    let response = this.shop.id !== null? this.serv.updateShop(this.shop):this.serv.insertShop(this.shop);
+    response.subscribe(
         res => {
-          console.log(res);
-          this.onChanged.emit(true);
+          this.onShopSaved.emit(this.shop);
         },
         err=> {
           console.log(err);
-          this.onChanged.emit(true);
+          this.onShopSaved.emit(null);
         });
   }
   cancel():void{
-    this.onChanged.emit(true);
+    this.onShopSaved.emit(null);
   }
 }

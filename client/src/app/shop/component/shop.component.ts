@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ShopService } from '../shop.service';
 import * as moment from 'moment';
 import { Shop } from '../models/shop';
+import { GridApi, ColumnApi } from 'ag-grid-community';
+import { Observable, forkJoin } from 'rxjs';
 
 
 @Component({
@@ -11,19 +13,20 @@ import { Shop } from '../models/shop';
 })
 export class ShopComponent implements OnInit {
  
-  private gridApi:any;
-  private columnApi:any;
+  private api:GridApi;
+  private columnApi: ColumnApi;
 
-  public selectedShop: Shop;
-  public isAddNew = false;
-  
+  private rowData: Shop[];
+
+
   columnDefs = [
     { 
       headerName: 'Name', 
       field: 'name', 
       sortable: true, 
       filter: true, 
-      checkboxSelection: true 
+      checkboxSelection: true,
+      editable: true
     },
     { 
       headerName: 'CreateDate', 
@@ -32,35 +35,52 @@ export class ShopComponent implements OnInit {
       filter: true,
       cellRenderer: (data) => { return moment(data.createdAt).format('MM/DD/YYYY HH:mm') } }
   ];
-  rowData: any ;
+
 
   constructor(private serv: ShopService) {
    }
 
   ngOnInit() {
-    this.serv.getShops().subscribe(res => {this.rowData = res;console.log(res)}, err => console.log("error:" + err) );
+    this.serv.getShops().subscribe(
+      res => this.rowData = res,
+      err => console.log(err)
+    );
   }
-  onChanged(increased:boolean){
-   this.isAddNew = !increased
-  }
+
   OnGridReady(params) {
-    this.gridApi=params.api;
+    this.api=params.api;
+    this.columnApi = params.columnApi;
   }
 
-  delete():void{
-    const shops = this.gridApi.getSelectedRows()
-    if(shops.length > 0){
-
-    }
+  rowsSelected() {
+    return this.api && this.api.getSelectedRows().length > 0;
   }
+  deleteSelectedRows() {
+    const selectRows = this.api.getSelectedRows();
+    if(selectRows.length > 0){
+      this.serv.delete(selectRows[0])
+        .subscribe(
+          res => this.api.updateRowData( { remove: selectRows } ),
+          err => console.log(err)
+        );
+    }    
+  }
+
+  public editInProc = false;
+  private shopBeingEdited: Shop = new Shop();
+  onChanged(increased:boolean){
+    this.editInProc = !increased
+   }
   change():void{
-    const shops = this.gridApi.getSelectedRows()
+    const shops = this.api.getSelectedRows()
     if(shops.length > 0){
-      console.log("dasdas" + this.selectedShop);
-      console.log(shops[0]);
-      this.selectedShop = shops[0] as Shop;
-      console.log(this.selectedShop);
-      this.isAddNew = true;
+      this.shopBeingEdited = <Shop>shops[0];
+      this.editInProc = true;
     }
   }
+
+  onShopSaved(athleteToSave: Shop) {
+    this.shopBeingEdited = new Shop();
+    this.editInProc = false;
+}
 }

@@ -1,7 +1,8 @@
 export class Shop {
-    public Name: string;
-    public CreateDate: string;
-    public ShopURL: string;
-    public IsChain: boolean;
-    public JurAdress :string;
+    public id: number;
+    public name: string;
+    public createDate: string;
+    public shopURL: string;
+    public isChain: boolean;
+    public jurAdress :string;
 }
