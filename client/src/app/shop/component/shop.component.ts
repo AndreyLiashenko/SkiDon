@@ -25,8 +25,7 @@ export class ShopComponent implements OnInit {
       field: 'name', 
       sortable: true, 
       filter: true, 
-      checkboxSelection: true,
-      editable: true
+      checkboxSelection: true
     },
     { 
       headerName: 'CreateDate', 
