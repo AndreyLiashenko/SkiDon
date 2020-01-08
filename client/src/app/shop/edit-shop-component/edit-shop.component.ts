@@ -18,7 +18,7 @@ export class EditShopComponent implements OnInit {
   @Output() onChanged = new EventEmitter<boolean>();
 
   save():void{  
-    let response = this.shop.id !== null? this.serv.updateShop(this.shop):this.serv.insertShop(this.shop);
+    let response = this.shop.id ? this.serv.updateShop(this.shop):this.serv.insertShop(this.shop);
     response.subscribe(
         res => {
           this.onShopSaved.emit(this.shop);

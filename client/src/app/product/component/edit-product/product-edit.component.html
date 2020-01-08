@@ -1,0 +1,27 @@
+<p>product-edit works!</p>
+<div class="row">
+    <div class="form-group col-12">
+        <label >product Name: {{product.Name}}</label>
+        <input type="text" class="form-control" [(ngModel)]="product.name" />
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-12">
+        <label >product shopId</label>
+        <input type="text" class="form-control" [(ngModel)]="product.shopId" />
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-12">
+        <label >product categoryId</label>
+        <input type="text" class="form-control" [(ngModel)]="product.categoryId" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <button (click)="save()">Save</button>
+    </div>
+    <div class="col-6">
+        <button (click)="cancel()">Cancel</button>
+    </div>   
+</div>

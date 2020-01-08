@@ -13,12 +13,13 @@ import { AuthGuard } from './service/auth.guard';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainMenuComponent } from './shared/main-menu.component';
-import { ProductComponent } from './product/product-grid.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './service/login/login.component';
 import { ShopComponent } from './shop/component/shop.component';
 import { EditShopComponent } from './shop/edit-shop-component/edit-shop.component';
 import { AuthInterceptor } from './service/auth.interceptor';
+import { ProductComponent } from './product/component/grid/product-grid.component';
+import { ProductEditComponent } from './product/component/edit-product/product-edit.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -32,7 +33,9 @@ export function tokenGetter() {
     HomeComponent,
     LoginComponent,
     ShopComponent,
-    EditShopComponent
+    EditShopComponent,
+    ProductComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,

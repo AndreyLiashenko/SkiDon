@@ -19,7 +19,7 @@ export class ShopService {
     return this.http.get<Shop[]>(this.url);
   }
   updateShop(shop: Shop):Observable<Shop>{
-      return this.http.put<Shop>(this.url + '/' + shop.id, shop);
+    return this.http.put<Shop>(this.url + '/' + shop.id, shop);
   }
   delete(shop: Shop) {
     return this.http.delete(this.url + '/' + shop.id);

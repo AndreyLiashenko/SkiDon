@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { ShopService } from '../shop.service';
-import { Shop } from '../models/shop';
+import { ProductService } from '../../product.service';
 import { GridApi, ColumnApi } from 'ag-grid-community';
+import { Product } from '../../models/product';
 
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-shop',
-  templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css']
+  selector: 'product-grid',
+  templateUrl: './product-grid.component.html',
+  styleUrls: ['./product-grid.component.css'],
+  providers: [ProductService]
 })
-export class ShopComponent implements OnInit {
+export class ProductComponent {
+
  
   private api:GridApi;
   private columnApi: ColumnApi;
 
-  private rowData: Shop[];
+  private rowData: Product[];
 
 
   columnDefs = [
@@ -38,11 +40,11 @@ export class ShopComponent implements OnInit {
   ];
 
 
-  constructor(private serv: ShopService) {
+  constructor(private serv: ProductService) {
    }
 
   ngOnInit() {
-    this.serv.getShops().subscribe(
+    this.serv.getProducts().subscribe(
       res => this.rowData = res,
       err => console.log(err)
     );
@@ -68,22 +70,22 @@ export class ShopComponent implements OnInit {
   }
 
   public editInProc = false;
-  private shopBeingEdited: Shop = new Shop();
+  private productBeingEdited: Product = new Product();
   onChanged(increased:boolean){
     this.editInProc = !increased
    }
   change():void{
-    const shops = this.api.getSelectedRows()
-    if(shops.length > 0){
-      this.shopBeingEdited = <Shop>shops[0];
+    const products = this.api.getSelectedRows()
+    if(products.length > 0){
+      this.productBeingEdited = <Product>products[0];
       this.editInProc = true;
     }
   }
 
-  onShopSaved(athleteToSave: Shop) {
-    this.shopBeingEdited = new Shop();
+  onProductSaved(athleteToSave: Product) {
+    this.productBeingEdited = new Product();
     this.editInProc = false;
-    this.serv.getShops().subscribe(
+    this.serv.getProducts().subscribe(
       res => this.rowData = res,
       err => console.log(err)
     );

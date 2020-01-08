@@ -1,0 +1,31 @@
+button{
+    margin-right: 10px ;
+}
+.popup{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    outline: none;
+    overflow-x: auto;
+    overflow-y: auto;
+    z-index: 49;
+}
+.edit-panel-product{
+    position: relative;
+    background-color: #fff;
+    margin: 30px auto;
+    z-index: 51; 
+    padding: 10px 50px 50px 10px;   
+}
+.overlay{
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: .6;
+}

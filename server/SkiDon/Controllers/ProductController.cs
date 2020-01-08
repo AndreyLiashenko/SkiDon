@@ -23,7 +23,7 @@ namespace SkiDon.Controllers
         {
             return await base.Get();
         }
-
+        
         [HttpGet("{key}")]
         public async Task<ActionResult<Product>> Get(long key)
         {

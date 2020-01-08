@@ -1,0 +1,31 @@
+<p>product-grid works!</p>
+<div class="row">
+    <div class="col-12 my-1">
+        <button (click)="editInProc = !editInProc" >Add New</button>
+        <button (click)="change()"  [disabled]="!rowsSelected()">Change</button>
+        <button (click)="deleteSelectedRows()"  [disabled]="!rowsSelected()">Delete Selected Row</button>
+    </div>
+</div>
+<div class="row" >
+    <div class="col-12">
+        <ag-grid-angular
+            #agGrid
+            style="height: 500px;"
+            class="ag-theme-balham"
+            [rowData]="rowData"
+            [columnDefs]="columnDefs"
+            rowSelection='single'
+            (gridReady)="OnGridReady($event)"
+            
+        >
+        </ag-grid-angular>
+    </div>
+</div>
+<div class="row" *ngIf="editInProc">
+    <div class="col-12 popup">
+        <div class="edit-panel-product">
+            <app-product-edit *ngIf="editInProc" (onProductSaved)="onProductSaved($event)" [product]="productBeingEdited"></app-product-edit>  
+        </div>
+        <div class="overlay"></div>    
+    </div>    
+</div>
