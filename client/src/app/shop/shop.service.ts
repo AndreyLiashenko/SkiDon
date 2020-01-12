@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ShopService {
 
-  private url = "https://localhost:44330/api/shop";
+  private url = "https://skidon-web-app.azurewebsites.net/api/shop";
 
   constructor(private http: HttpClient){ }
      
