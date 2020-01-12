@@ -17,7 +17,7 @@ export class ProductComponent {
   private api:GridApi;
   private columnApi: ColumnApi;
 
-  private rowData: Product[];
+  public rowData: Product[];
 
 
   columnDefs = [
