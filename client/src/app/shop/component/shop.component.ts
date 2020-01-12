@@ -15,7 +15,7 @@ export class ShopComponent implements OnInit {
   private api:GridApi;
   private columnApi: ColumnApi;
 
-  private rowData: Shop[];
+  public rowData: Shop[];
 
 
   columnDefs = [
@@ -68,7 +68,7 @@ export class ShopComponent implements OnInit {
   }
 
   public editInProc = false;
-  private shopBeingEdited: Shop = new Shop();
+  public shopBeingEdited: Shop = new Shop();
   onChanged(increased:boolean){
     this.editInProc = !increased
    }
