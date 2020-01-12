@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\server",
+    "\\server\\SkiDon",
+    "\\server\\SkiDon\\Controllers"
   ],
+  "SelectedNode": "\\server\\SkiDon\\Controllers\\ProductController.cs",
   "PreviewInSolutionExplorer": false
 }

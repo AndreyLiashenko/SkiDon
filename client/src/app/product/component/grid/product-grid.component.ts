@@ -70,7 +70,7 @@ export class ProductComponent {
   }
 
   public editInProc = false;
-  private productBeingEdited: Product = new Product();
+  public productBeingEdited: Product = new Product();
   onChanged(increased:boolean){
     this.editInProc = !increased
    }
