@@ -1,1 +1,21 @@
 <p>discount-edit works!</p>
+<div class="row">
+    <div class="form-group col-12">
+        <label >discount price</label>
+        <input type="text" class="form-control" [(ngModel)]="discount.price" />
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-12">
+        <label >discount description</label>
+        <input type="text" class="form-control" [(ngModel)]="discount.description" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <button (click)="save()">Save</button>
+    </div>
+    <div class="col-6">
+        <button (click)="cancel()">Cancel</button>
+    </div>   
+</div>

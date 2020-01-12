@@ -8,12 +8,12 @@ import { Observable } from 'rxjs';
 })
 export class DiscountService {
 
-  private url = "https://skidon-web-app.azurewebsites.net/api/discount";
+    private url = "https://skidon-web-app.azurewebsites.net/api/discount";
 
   constructor(private http: HttpClient){ }
      
   insertDiscount(discount: Discount){
-    return this.http.post(this.url ,prodiscountduct);
+    return this.http.post(this.url ,discount);
   }
   getDiscount(): Observable<Discount[]>{
     return this.http.get<Discount[]>(this.url);
