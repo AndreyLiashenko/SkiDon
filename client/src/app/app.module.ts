@@ -20,6 +20,8 @@ import { EditShopComponent } from './shop/edit-shop-component/edit-shop.componen
 import { AuthInterceptor } from './service/auth.interceptor';
 import { ProductComponent } from './product/component/grid/product-grid.component';
 import { ProductEditComponent } from './product/component/edit-product/product-edit.component';
+import { DiscountGridComponent } from './discount/component/grid/discount-grid.component';
+import { DiscountEditComponent } from './discount/component/edit/discount-edit.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -35,7 +37,9 @@ export function tokenGetter() {
     ShopComponent,
     EditShopComponent,
     ProductComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    DiscountGridComponent,
+    DiscountEditComponent
   ],
   imports: [
     BrowserModule,

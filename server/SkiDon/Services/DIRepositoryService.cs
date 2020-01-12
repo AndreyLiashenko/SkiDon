@@ -14,6 +14,7 @@ namespace SkiDon.Services
         {
             services.AddScoped<IApiRepository<Product, long>, ApiRepository<Product, long>>();
             services.AddScoped<IApiRepository<Shop, long>, ApiRepository<Shop, long>>();
+            services.AddScoped<IApiRepository<Discount, long>, ApiRepository<Discount, long>>();
         }
     }
 }
